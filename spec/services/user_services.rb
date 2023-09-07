@@ -1,6 +1,6 @@
 class UserServices
-include HTTParty
-
+    include HTTParty
+#debug_output $stdout
 base_uri ENV['BASE_URL']
     def initialize
         @headers = {"Content-Type" => "application/json"}
@@ -20,6 +20,10 @@ base_uri ENV['BASE_URL']
 
     def update_user(id, body)
         self.class.put("/usuarios/#{id}", {:headers => @headers, :body => body})
+    end
+
+    def delete_user(id)
+        self.class.delete("/usuarios/#{id}", {:headers => @headers})
     end
 
 end
